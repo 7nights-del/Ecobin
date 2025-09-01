@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">💚 Support EcoBin</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Your donation helps us maintain and expand our waste classification database, 
+                    develop new features, and promote sustainable waste management practices.
+                </p>
+
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number (M-Pesa)</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" 
+                               placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
+                        <div class="form-text">Format: 07XX XXX XXX (10 digits)</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount (KES)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">KES</span>
+                            <input type="number" class="form-control" id="amount" name="amount" 
+                                   min="10" step="10" placeholder="100" required>
+                        </div>
+                        <div class="form-text">Minimum donation: KES 10</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        💳 Donate via M-Pesa
+                    </button>
+                </form>
+
+                <div class="mt-4">
+                    <h6>What your donation supports:</h6>
+                    <ul class="small">
+                        <li>Database maintenance and expansion</li>
+                        <li>Mobile app development</li>
+                        <li>Educational outreach programs</li>
+                        <li>Server and hosting costs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

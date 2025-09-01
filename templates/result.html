@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Waste Classification Result</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Item: <span class="text-capitalize">{{ item }}</span></h5>
+                
+                <div class="category-badge mb-3">
+                    {% if category == 'Compost' %}
+                        <span class="badge bg-success fs-6">♻️ {{ category }}</span>
+                    {% elif category == 'Recycle' %}
+                        <span class="badge bg-primary fs-6">🔄 {{ category }}</span>
+                    {% elif category == 'Trash' %}
+                        <span class="badge bg-secondary fs-6">🗑️ {{ category }}</span>
+                    {% elif category == 'Hazardous Waste' %}
+                        <span class="badge bg-danger fs-6">⚠️ {{ category }}</span>
+                    {% elif category == 'E-Waste' %}
+                        <span class="badge bg-warning text-dark fs-6">💻 {{ category }}</span>
+                    {% else %}
+                        <span class="badge bg-info text-dark fs-6">❓ {{ category }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="tip-section">
+                    <h6>Disposal Tip:</h6>
+                    <p class="text-muted">{{ tip }}</p>
+                </div>
+
+                <div class="actions mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                        ← Check Another Item
+                    </a>
+                    <a href="{{ url_for('donate') }}" class="btn btn-success ms-2">
+                        💚 Support EcoBin
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="education-section mt-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">Did You Know?</h6>
+                </div>
+                <div class="card-body">
+                    <p class="small mb-0">
+                        Proper waste sorting can reduce landfill waste by up to 60% and 
+                        significantly lower greenhouse gas emissions. Every correctly sorted 
+                        item makes a difference! 🌍
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="hero-section mb-5">
+            <h1 class="display-4 text-success mb-3">🌱 EcoBin</h1>
+            <p class="lead">Your smart waste sorting assistant</p>
+            <p class="text-muted">Enter any item to learn how to dispose of it properly</p>
+        </div>
+
+        <form action="{{ url_for('classify_waste') }}" method="POST" class="mb-4">
+            <div class="input-group input-group-lg">
+                <input type="text" name="item" class="form-control" 
+                       placeholder="e.g., banana peel, plastic bottle, battery..." 
+                       required aria-label="Waste item">
+                <button class="btn btn-success" type="submit">Classify Waste</button>
+            </div>
+        </form>
+
+        <div class="stats-section mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ waste_data|length }}+</h5>
+                            <p class="card-text">Items in database</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">5</h5>
+                            <p class="card-text">Waste categories</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">100%</h5>
+                            <p class="card-text">Eco-friendly tips</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="support-section mt-5">
+            <p>Help us expand our database and reach more people!</p>
+            <a href="{{ url_for('donate') }}" class="btn btn-outline-success">
+                💚 Support Our Mission
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
