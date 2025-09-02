@@ -5,6 +5,8 @@
 3. Brian Mwaghogho-brianmwaghogho33@gmail.com ; Git account: brianmwaghogho
 4. Hafsa Hajir-hafsahajir87@gmail.com ; Git account: xafsithoo-sys
 5. Samuel Mburu -mburusam885@gmail.com ; Git account: Mburu-Sam
+
+
 Access our PITCH DECK https://docs.google.com/presentation/d/1FkO2cbdeeqH3tUYCTb9LEJG2_bdr0QhC/edit?slide=I'd.p13#slide=I'd.p13
 
 # EcoBin - Smart Waste Classification System
