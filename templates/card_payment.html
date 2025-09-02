@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">💳 Complete Card Payment</h4>
+            </div>
+            <div class="card-body">
+                <p>You're donating: <strong>KES {{ amount }}</strong></p>
+                <p>Email: <strong>{{ email }}</strong></p>
+                
+                <!-- Paystack Payment Button -->
+                <button onclick="payWithPaystack()" class="btn btn-success w-100">
+                    💳 Pay with Card
+                </button>
+                
+                <div class="mt-3">
+                    <a href="{{ url_for('donate') }}" class="btn btn-outline-secondary">
+                        ← Back to Donation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Paystack Inline JS -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+function payWithPaystack() {
+    const amount = parseFloat({{ amount }}) * 100; // Convert to kobo
+    const handler = PaystackPop.setup({
+        key: '{{ paystack_public_key }}',
+        email: '{{ email }}',
+        amount: amount,
+        currency: 'KES',
+        ref: 'ECOBIN-' + Date.now(),
+        metadata: {
+            donation_id: '{{ donation.id }}',
+            custom_fields: [
+                {
+                    display_name: "Donation Purpose",
+                    variable_name: "donation_purpose",
+                    value: "EcoBin Sustainability"
+                }
+            ]
+        },
+        callback: function(response) {
+            // Payment completed successfully
+            window.location.href = '/donate?payment=success&reference=' + response.reference;
+        },
+        onClose: function() {
+            // User closed the payment modal
+            alert('Payment window closed.');
+        }
+    });
+    handler.openIframe();
+}
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">📱 OTP Verification</h4>
+            </div>
+            <div class="card-body">
+                <p>Please enter the OTP sent to your phone to complete the payment.</p>
+                
+                <form method="POST" action="{{ url_for('verify_otp') }}">
+                    <input type="hidden" name="reference" value="{{ reference }}">
+                    <input type="hidden" name="donation_id" value="{{ donation.id }}">
+                    
+                    <div class="mb-3">
+                        <label for="otp" class="form-label">OTP Code</label>
+                        <input type="text" class="form-control" id="otp" name="otp" 
+                               placeholder="Enter 6-digit OTP" required pattern="[0-9]{6}">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">
+                        ✅ Verify OTP
+                    </button>
+                </form>
+                
+                <div class="mt-3">
+                    <a href="{{ url_for('donate') }}" class="btn btn-outline-secondary">
+                        ← Cancel Payment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

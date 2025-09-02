@@ -20,11 +20,54 @@
                                placeholder="your.email@example.com" required>
                     </div>
 
+                    <!-- Payment Method Selection -->
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number (M-Pesa)</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" 
-                               placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
-                        <div class="form-text">Format: 07XX XXX XXX (10 digits)</div>
+                        <label class="form-label">Payment Method</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" 
+                                   id="mpesa" value="mpesa" checked>
+                            <label class="form-check-label" for="mpesa">
+                                📱 M-Pesa
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" 
+                                   id="card" value="card">
+                            <label class="form-check-label" for="card">
+                                💳 Card Payment
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- M-Pesa Fields (shown by default) -->
+                    <div id="mpesaFields">
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number (M-Pesa)</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" 
+                                   placeholder="07XX XXX XXX" pattern="[0-9]{10}">
+                            <div class="form-text">Format: 07XX XXX XXX (10 digits)</div>
+                        </div>
+                    </div>
+
+                    <!-- Card Fields (hidden by default) -->
+                    <div id="cardFields" style="display: none;">
+                        <div class="mb-3">
+                            <label for="card_number" class="form-label">Card Number</label>
+                            <input type="text" class="form-control" id="card_number" name="card_number" 
+                                   placeholder="4242 4242 4242 4242" pattern="[0-9\s]{13,19}">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="expiry" class="form-label">Expiry Date</label>
+                                <input type="text" class="form-control" id="expiry" name="expiry" 
+                                       placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" name="cvv" 
+                                       placeholder="123" pattern="[0-9]{3,4}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -38,9 +81,29 @@
                     </div>
 
                     <button type="submit" class="btn btn-success w-100">
-                        💳 Donate via M-Pesa
+                        💳 Donate Now
                     </button>
                 </form>
+
+                <!-- JavaScript to toggle fields -->
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const mpesaRadio = document.getElementById('mpesa');
+                    const cardRadio = document.getElementById('card');
+                    const mpesaFields = document.getElementById('mpesaFields');
+                    const cardFields = document.getElementById('cardFields');
+                    
+                    mpesaRadio.addEventListener('change', function() {
+                        mpesaFields.style.display = 'block';
+                        cardFields.style.display = 'none';
+                    });
+                    
+                    cardRadio.addEventListener('change', function() {
+                        mpesaFields.style.display = 'none';
+                        cardFields.style.display = 'block';
+                    });
+                });
+                </script>
 
                 <div class="mt-4">
                     <h6>What your donation supports:</h6>

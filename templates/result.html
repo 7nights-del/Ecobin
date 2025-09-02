@@ -8,7 +8,11 @@
                 <h4 class="mb-0">Waste Classification Result</h4>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Item: <span class="text-capitalize">{{ item }}</span></h5>
+                <h5 class="card-title">You searched for: <span class="text-capitalize">{{ item }}</span></h5>
+                
+                {% if matched_item != item %}
+                <p class="text-muted small">Matched to: <span class="text-capitalize fw-bold">{{ matched_item }}</span></p>
+                {% endif %}
                 
                 <div class="category-badge mb-3">
                     {% if category == 'Compost' %}
@@ -21,6 +25,14 @@
                         <span class="badge bg-danger fs-6">⚠️ {{ category }}</span>
                     {% elif category == 'E-Waste' %}
                         <span class="badge bg-warning text-dark fs-6">💻 {{ category }}</span>
+                    {% elif category == 'Donation/Textile Recycling' %}
+                        <span class="badge bg-info fs-6">👕 {{ category }}</span>
+                    {% elif category == 'Bulk Item' %}
+                        <span class="badge bg-dark fs-6">📦 {{ category }}</span>
+                    {% elif category == 'Special Recycling' %}
+                        <span class="badge bg-purple fs-6">♻️ {{ category }}</span>
+                    {% elif category == 'Medical Disposal' %}
+                        <span class="badge bg-danger fs-6">🏥 {{ category }}</span>
                     {% else %}
                         <span class="badge bg-info text-dark fs-6">❓ {{ category }}</span>
                     {% endif %}

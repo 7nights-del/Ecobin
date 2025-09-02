@@ -52,6 +52,10 @@ footer {
     margin-top: auto;
 }
 
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section h1 {
@@ -60,5 +64,19 @@ footer {
     
     .stats-section .col-md-4 {
         margin-bottom: 1rem;
+    }
+    
+    .input-group-lg {
+        flex-direction: column;
+    }
+    
+    .input-group-lg .form-control {
+        border-radius: 0.375rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .input-group-lg .btn {
+        border-radius: 0.375rem;
+        width: 100%;
     }
 }
